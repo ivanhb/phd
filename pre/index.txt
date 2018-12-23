@@ -1,0 +1,74 @@
+
+Understanding, quantifying and predicting the scientific researches and the resulting outcomes is the main object of the Science of Science study (SOS). This field of study has attracted the attention of scholars from different backgrounds, since this issue is related to almost all the scientific domains. Improvements in SOS will lead to better solutions to many challenging problems. A particular important emphasis should be also given to the multiplex structure, dynamics and evolution mechanisms of the entire scientific literature, since these are the factors that have been less studied in the last years. [https://www.sciencedirect.com/science/article/pii/S0370157317303289] 
+The publishers, editors and authors all have primary roles and responsibilities in making the semantic publishing a successful mechanism which will bring substantial benefits into the scholarly community and general communication.  
+On the last years, several projects like OpenAIRE [4], and OpenCitations [5] who worked together with the University of Bologna on semantic publishing thematics. Both these projects have emphasized the importance of having a solid open science data available to the researching community, which will lead to an easier spread of knowledge, information and data that will more generally benefit a sustained progress in society. 
+The OpenCitations project aim is to create and expand an open repository of scholarly citation data using semantic publishing politics. The current instantiation of the OpenCitations corpus is hosted by the Department of Computer Science and Engineering (DISI) at the University of Bologna, and since the beginning of July 2016 has been ingesting, processing and publishing reference lists of scholarly papers available in Europe PubMed Central. In addition, extra metadata for the citations are obtained from Crossref and (for authors) ORCID.
+In case of the projects just mentioned we notice a considerable less emphasis on the non scientific study domains (e.g: computer science, biology, chemistry, or medicine). Social science is a notable domain example that has not been treated in detail on the last years. This fact might be due to the complexity of the related papers and materials of these fields, we therefore have a less structured format of the inner textual contents and a much more convoluted linguistic form. Problems like this will suggest a more devoted analyzing approach, and investigate new adaptions of the information and knowledge perceived with the semantic publishing data processing strategy.  
+An intersting master thesis for the semantic publishing in the humanities [4] just points out the problems just mentioned. The same work tries to answer the questions: Which type of humanities publication is best suited for semantic enhancement? Which guidelines should govern how the text is coded? And how can the end-users of the book benefit from the enhancements?. This questions are examined through a specific well defined case of study.       
+ 
+
+As mentioned in the previous section the Social Science and Digital Humanities domain is a highly interesting field to base my research on, since few studies have associate it with the semantic publishing technologies. One of the few good examples applied in a subbranch of this materials is a proposed knowledge engineering models and tools to manage the digital scholarly publishing of manuscripts []. Therefore, a general study of some novel semantic publishing strategies application on this particular domain could possibly reveal interesting new patterns and dynamics.
+The overall need for new elaboration strategies regard social science and humanities materials are noticeable, for instance the Emilia Romagna region released some new financial supports for projects that aim on developing novel technologies, e.g: big data analysis and semantic technologies, on the elaborations of these specific domains [10].    
+
+An important goal to take care of while working on this Ph.D work, is to make sure that the large collections of scholarly data, information and knowledge used in the research will be available for a further use by other researchers of the community, and hopefully it will have a good impact also in the publishing industry strategies as a guide for a higher concern regard the academic community.   
+
+
+Having said that, I would like to concentrate my work on a specific research questions.
+
+
+Dear David,
+Thanks for the consideration and your help. You will find all the needed documents in this email. In the CV I am sending, you will also find some dedicated sections describing: the projects I have worked on, my studies and certificates (also before starting my work on the OpenCitations project), and publications.
+You will find several projects just mentioned inside the CV on my GitHub page (https://github.com/ivanhb). In addition, this is a link to my linkedin page (https://www.linkedin.com/in/ivan-heibi-738317a3/) (in case it helps too). We will send you as soon as possible the Ph.D proposal once it's completed.
+As also mentioned by Silvio, a generic letter is fine and it should be in a PDF format. The directives about how to upload/send it, and the target email address, should be sent to you from my university. To make this happen I should insert your email address inside my Ph.D demand, and then they will send you an email with these directives. Even if not specified, I think is better if I fill the demand using your Oxford email account. (In case you don't receive any notification from my university, please make me know). 
+The only requirement they have is to make sure the letter is uploaded by the 14/5/2018 (Monday) at 13:00.
+Since I will make three different Ph.D proposals, there is the possibility that you will need to make the same operation (upload/send the support letter) three times, just send the same PDF file without modifying it.
+If everything looks fine with you, I will just ask you to write me back, an give me your Oxford email address so I can specify it inside my Ph.D demand.
+
+Thanks again for your help and have a nice day,
+Ivan          
+
+
+Dear David, 
+Here I send you my Ph.D proposal. This is not the final version, some technical aspects like the links in the context to the bibliographic entries needs to be fixed, along with its overall linguistic form. I will hopefully adjust them tomorrow before uploading it. 
+
+Thanks again for your help,
+Ivan
+
+
+Gentile Professor Ciancarini,
+Sono Ivan Heibi, Assegnista di ricerca e collaboratore con Silvio Peroni sul progetto OpenCitations. Come le avrà già detto Silvio vorrei presentare la mia candidatura per un posto di dottorato. Le scrivo per mandarle il documento relativo al Progetto di ricerca che vorrei presentare in merito. Il seguente documento non rappresenta comunque la versione finale, in quanto vanno sistemate alcuni aspetti tecnici, come per esempio i link alla bibliografia. 
+
+Grazie per la sua disponibilità e mi scuso per la tardiva comunicazione,
+Ivan Heibi
+
+
+
+Corrections:
+scientific -> scholarly
+
+
+Ciao Silvio,
+Intanto ti ringrazio per la disponibilità e per il tuo aiuto in questi giorni. 
+Ma data un pò la situazione direi che la vedo molto dura consegnare una proposta accettabile (e proponibile), un pò per una questione di tempo ed un pò perché mi servirebbe ragionare a mente lucida e con idee molto più chiare per proporre una domanda di dottorato di questo tipo. Mi dispiace ma probabilmente il tutto è dettato da ancora poca esperienza e maturità in questo campo, infatti la mia speranza era che una proposta di progetto potesse essere formulata in una maniera più vaga (cosi da poter avere il tempo di approfondire il tutto mammano). Diciamo che tutto insegna, e magari in futuro si ripresentare l'occasione.
+
+Grazie ancora per tutto e scusami ancora per questa scelta,
+Ivan  
+
+
+
+
+
+
+
+
+Laurea triennale in informatica, Università di Bologna
+
+Laurea magistrale in informatica, Università di Bologna
+
+Dipartimento di Filologia Classica e Italianistica
+
+
+
+
+16 -> 1
+

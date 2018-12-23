@@ -1,0 +1,50 @@
+Monday 14/5/2018:
+
+I have re-started working with NeViR. Following also the last discussions and suggestions David gave us. 
+The core idea is to have a sparql query for the nodes, and one for the edges. 
+Let's take as an example the "citations", the system will work as follow:
+Pre) in this case the nodes are the citations resources, and they are connected through citing and cited entities the embed.
+1) A user want to visualize the network starting from a specific id, e.g: "02001010806360107050663080702026306630509-02001010806360107050663080702026305630301" 
+2) The system will perform the sparql query of the nodes to this specific Id.
+3) Once we have the element we will generate the edges directly connected to him, by applying the edges sparql query. This query might take values from the node-spqrql-query results and push it inside it. An edge query example is:
+
+4) we have some new nodes as a consequence of step (3). Therefore we will apply step (2) on each new node id. 
+
+The current situation right now builds a node and its directly connected edges. I will proceed tomorrow with the next steps. 
+
+
+
+## Thursday 17/5/2018:
+I started my day working on NeViR and finalizing the last parts developed yesterday. The current logical process is summarized in this scheme:
+
+Together with Silvio we talked about the current situation of the COCI project and scheduled the next steps to perform in order to make the COCI service as soon as possible available on the OpenCitations web site. I will stop my work on the NeViR project, and move back to the COCI project.
+
+
+## Friday 18/5/2018:
+the citation.py has been modified: when calling 'get_citation_rdf' method users have the ability to decide whether to include/exclude prov and data triples in the returned graph.
+This implies a new addition to the RDF-Triples generator script. Now we have the possibility to decide what type of output file wa want: Data or Provenance. In addition we can specify the base url to add as a prefix to our entities. In case we want only Provenance triples, We call it this way:     
+
+python3.6 coci_rdfgen.py -in data/cocioutput_sample/ -out prov_dataset.nt -prov -baseurl https://w3id.org/oc/index/coci/prov/
+
+
+To insert data into a specific graph we will use the LOAD operation:
+LOAD ( SILENT )? IRIref_from ( INTO GRAPH IRIref_to )?
+ 
+In order to view the current graphs, we use this sparql query:
+SELECT DISTINCT ?g 
+WHERE {
+  GRAPH ?g { ?s ?p ?o }
+} 
+
+In case we want to insert some triples inside a specific Graph:
+INSERT DATA
+  { 
+    GRAPH <http://w3id.org/oc/index/coci/prov/> 
+    {				 	<https://w3id.org/oc/index/coci/ci/02001010806360107050663080702026306630509-02001010806360107050663080702026305630201> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/spar/cito/Citation> .
+				<https://w3id.org/oc/index/coci/ci/02001010806360107050663080702026306630509-02001010806360107050663080702026305630201> <http://purl.org/spar/cito/hasCitationTimeSpan> "P1Y"^^<http://www.w3.org/2001/XMLSchema#duration> .
+				<https://w3id.org/oc/index/coci/ci/02001010806360107050663080702026306630509-02001010806360107050663080702026305630201> <http://purl.org/spar/cito/hasCitedEntity> <http://dx.doi.org/10.1186/1756-8722-5-21> .
+				<https://w3id.org/oc/index/coci/ci/02001010806360107050663080702026306630509-02001010806360107050663080702026305630201> <http://purl.org/spar/cito/hasCitingEntity> <http://dx.doi.org/10.1186/1756-8722-6-59> .
+  	} 
+ }
+
+

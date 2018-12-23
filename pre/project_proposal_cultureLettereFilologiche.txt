@@ -1,0 +1,45 @@
+
+I have based my master thesis on the creation of a web-based framework which benefits from data analysis techniques to explore and mine important information stored in an email collection archive of a single or multiple inboxes. 
+This work was specially useful to reveal inner information which could turn out to be relevant for general forensic investigations along with unfolding hidden social patterns and behaviours. 
+Through this project I have been able to read up about several fields of study: data/information representation and visualization, social network analysis, and natural language processing. Novel techniques related to these fields of study have been integrated inside the framework proposed on my thesis. The framework is available under MIT license and it is stored on a git repository, with the following link: "https://github.com/ivanhb/EMA".
+
+
+
+
+
+The analysis of Knowledge graph based data in Scientific literature 
+
+
+##State of the Art Review
+Perhaps one of the most interesting definition given to knowledge graphs is mentioned in [BB1]: "knowledge graphs could be envisaged as a network of all kind of things which are relevant to a specific domain or to an organization. They are not limited to abstract concepts and relations but can also contain instances of things like documents and datasets". 
+In computer science one of the first knowledge representation approachs adopted are Semantic Networks. The knowledge in this case is represented in the form of interconnected nodes and edges, in a way that nodes will represent concepts and situations and edges point out the relations between them. 
+The advent of the web lead to a much higher availability of data that need to be converted into knowledge and appropriately linked and managed to allow its versatile utilization. Formalized description languages that people can use to annotate data objects with description is the so called Semantic Web approach. The use of these new technologies defined a new phase of the web evolution also known as "The Web 3.0".
+According to the World Wide Web Consortium (W3C) the Semantic Web provides a common framework which allows data exchange across applications, entrprise, and community boundaries. Therefore, as also expressed by Tim Berners-Lee in 2001, its main object is to make the web understandable by computer programs. The Resource Description Framework (RDF) is the common data format used to exchange these data.   
+
+##The project
+A powerful usage of the Semantic Web technologies in the scientific publishing, could have a very significant impact in revolutionizing the sparse scientific knowledge around the world. This approach is also called as Semantic Publishing. 
+The Semantic Publishing strategy aims at representing the scientific knowledge accessible and understandable to machines by adding semantic annotations and meaning to its content. This approach will enrich our overal knowledge, for example we might infer new information about: the publication’s contributions, methods used, or application domains.
+Following my thesis topics I continued this last year working as Research fellow under the supervision of Dr Peroni on developing new Web Interfaces and visualizing semantic web based resources information, aside the DASPLAB research team. More specifically, my work was focused on the develop of novel data visualizations and query services over the stored data of the opencitations project. The main work of opencitations is to create and expand an open repository of scholarly citation data. More specifically, my work was to facilitate the interaction of the users and improve the human comprehension of the citation information.
+In addition, I have assisted Dr Peroni on additional technical aspects of the opencitations project, along with the maintenance/expansion of its services and the volume of data held in the opencitations corpus.
+Exploring and working with the scientific publishes revealed the large number of interesting dynamics of this field. Deepen the research of such aspects and dynamics could gain important benefits on the future of the scientific community. 
+An important research question I would like to investigate in my PhD, concern the patterns and behaviour of the citations in the scientific publications regard specific domains, and how does these attitudes impact the evolution of the overall knowledge. This problem involves a general study of the citation function inside different contexts and scientific domains. 
+Working with Semantic Web and linking data, envolves a general consideration of several components and concepts. My research will surely involve a deepen analysis of them and the methodologies to use in each different field.
+1) The data representations: the usage of ontologies to define vocabularies, concepts and relationships to describe and represent an area of concern. W3C offers a number of techniques to define different forms of vocabularies in standard formats: RDF and RDF Schemas, Simple Knowledge Organization System (SKOS), Web Ontology Language (OWL), and the Rule Interchange Format (RIF).
+2) Data querying: SPARQL is the main query language used on RDF type of data. SPARQL allows for a query to consist of triple patterns, conjunctions, disjunctions, and optional patterns. Therefor, is a key component to use when treating linked data.
+3) 
+
+
+
+
+##Workflow and expected results
+I would like to dedicate my first year reading up about the state of the art in semantic publishing and the metadata accompanied to the published information which describes its semantic context. Understanding the metadata and how it is used to link the data resources in a semantic network, will help me focus on the relevant parts that might help on characterizing the publishing patterns/behaviour.
+This first phase is crucial in order to outline a specific aspect to focus on. Following this background research procedure, I will continue the next years of my PhD, working on a more detailed project and building a concrete strategy which will hopefully help me retrieve interesting results, and extract the parameters that better influence such publishing behaviour.    
+
+
+
+
+Bibliography
+[BB1] https://hackernoon.com/wtf-is-a-knowledge-graph-a16603a1a25f
+
+
+https://link.springer.com/article/10.1007/s13218-016-0425-0
