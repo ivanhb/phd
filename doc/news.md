@@ -1,3 +1,6 @@
+** 4 March 2019
+CROCI (http://opencitations.net/index/croci) launched with citations the first set of citations received. Its data are queryable using the Rest API (https://w3id.org/oc/index/croci/api/v1 …) or the unifying API for all indexes (https://w3id.org/oc/index/api/v1 ). To contribute: https://github.com/opencitations/croci
+
 ** 7 February 2019
 We present a proposal for a new index of crowdsourced citation data: CROCI.
 <a href="https://opencitations.wordpress.com/2019/02/07/crowdsourcing-open-citations-with-croci/">Read the whole article on the OpenCitations Blog</a>. This article has been submitted to <a href="https://www.issi2019.org/">ISSI2019</a>.
