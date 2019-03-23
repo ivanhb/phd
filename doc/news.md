@@ -1,9 +1,9 @@
 ** 15 March 2019
 I am so happy to be part of the CATARSI project: aims at analysing existing tools for automatic text analysis, so as to develop a prototypical Web-based application for mashing up these tools to create execution workflows by means of an intuitive Web interface.
-<a href="https://centri.unibo.it/dharc/en/research/projects-at-dh-arc">
+<a href="https://centri.unibo.it/dharc/en/research/projects-at-dh-arc#0ef1429edc02464395e0b84bf55d9c96">dharc/en/research/projects-at-dh-arc:CATARSI</a>
 
 ** 4 March 2019
-CROCI (<a href="http://opencitations.net/index/croci">) launched with citations the first set of citations received. Its data are queryable using the Rest API (<a href="https://w3id.org/oc/index/croci/api/v1"> …) or the unifying API for all indexes (https://w3id.org/oc/index/api/v1 ). To contribute: <a href="https://github.com/opencitations/croci">
+CROCI (<a href="http://opencitations.net/index/croci">opencitations.net/index/croci</a>) launched with citations the first set of citations received. Its data are queryable using the Rest API (<a href="https://w3id.org/oc/index/croci/api/v1">index/croci/api</a> …) or the unifying API for all indexes (https://w3id.org/oc/index/api/v1 ). To contribute: <a href="https://github.com/opencitations/croci">github.com/opencitations/croci</a>
 
 ** 7 February 2019
 We present a proposal for a new index of crowdsourced citation data: CROCI.
