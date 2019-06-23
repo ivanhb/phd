@@ -1,3 +1,6 @@
+** 23 June 2019
+I will present the new developed tool <a href="#projects_list_top">MITAO</a> related to the <a href="https://centri.unibo.it/dharc/en/research/projects-at-dh-arc#0ef1429edc02464395e0b84bf55d9c96">CATARSI</a> project, on the 26th of June in Lisbon at <a href="http://www.euram-online.org/">EURAM-2019</a>  
+
 ** 15 March 2019
 I am so happy to be part of the CATARSI project: aims at analysing existing tools for automatic text analysis, so as to develop a prototypical Web-based application for mashing up these tools to create execution workflows by means of an intuitive Web interface.
 <a href="https://centri.unibo.it/dharc/en/research/projects-at-dh-arc#0ef1429edc02464395e0b84bf55d9c96">dharc/en/research/projects-at-dh-arc:CATARSI</a>
