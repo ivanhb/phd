@@ -1,8 +1,10 @@
 {
-  "0":"euram2019(lisboa)",
-  "1":"issi2019(roma)",
-  "2":"isws(bertinoro)",
-  "3":"opencitations_workshop(bologna)",
-  "4":"wikicite2018(berkeley)",
-  "5":"wikimedialib2018(firenze)"
+  "dir": [
+    "euram2019(lisboa)",
+    "issi2019(roma)",
+    "isws(bertinoro)",
+    "opencitations_workshop(bologna)",
+    "wikicite2018(berkeley)",
+    "wikimedialib2018(firenze)"
+  ]
 }
