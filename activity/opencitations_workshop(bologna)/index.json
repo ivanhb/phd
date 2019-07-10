@@ -1,0 +1,11 @@
+{
+  "name": "Workshop on Open Citations",
+  "location": "Bologna, Italy",
+  "date": "03-09-2018 - 05-09-2018",
+  "contribution": "Member of workshop staff",
+  "description": "About 500 million open bibliographic citations are available on the web. We invite to this workshop researchers, scholarly publishers, funders, policy makers, and opening citations advocates, interested in the widespread adoption of practises for creation, reuse and improvement of open citation data.",
+  "extra": [
+    {"type":"webpage","label":"Workshop website","value":"https://workshop-oc.github.io/index.html"}
+  ],
+  "include_in_webpage": 1
+}
