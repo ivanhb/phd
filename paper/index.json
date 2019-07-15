@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "reference": "Heibi, I., Peroni, S., & Shotton, D. Enabling text search on SPARQL endpoints through OSCAR. Data Science, (Preprint), 1-23.",
+      "reference_format": "apa",
+      "link": "https://doi.org/10.3233/DS-190016",
+      "link_format": "doi",
+      "title": "Enabling text search on SPARQL endpoints through OSCAR",
+      "autor": "Ivan Heibi && Silvio Peroni && David Shotton",
+      "booktitle": "Semantics, Analytics, Visualization",
+      "date": "10/04/2019",
+    },
+    {
+      "reference": "Heibi, I., Peroni, S., & Shotton, D. (2019). Crowdsourcing open citations with CROCI-An analysis of the current status of open citations, and a proposal. arXiv preprint arXiv:1902.02534.",
+      "reference_format": "apa",
+      "link": "https://arxiv.org/abs/1902.02534",
+      "link_format": "arxiv",
+      "title": "Crowdsourcing open citations with CROCI -- An analysis of the current status of open citations, and a proposal",
+      "autor": "Ivan Heibi && Silvio Peroni && David Shotton",
+      "date": "21/06/2019"
+    },
+    {
+      "reference": "Heibi, I., Peroni, S., & Shotton, D. (2019). COCI, the OpenCitations Index of Crossref open DOI-to-DOI citations. arXiv preprint arXiv:1904.06052.",
+      "reference_format": "apa",
+      "link": "https://arxiv.org/abs/1904.06052",
+      "link_format": "arxiv",
+      "title": "COCI, the OpenCitations Index of Crossref open DOI-to-DOI citations",
+      "autor": "Ivan Heibi && Silvio Peroni && David Shotton",
+      "date": "12/04/2019"
+    }
+  ]
+}
