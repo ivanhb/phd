@@ -3,6 +3,7 @@
     {
       "title": "Sfide e alleanze tra Biblioteche e Wikipedia",
       "type": "seminary",
+      "activity_type": "Didattica curriculare; Didattica libera",
       "date": "07/12/2018",
       "duration": "H8",
       "location": "Firenze, Italy",
@@ -13,6 +14,7 @@
     {
       "title": "Europeana, and Cultural Heritage ",
       "type": "seminary",
+      "activity_type": "Didattica curriculare; Didattica libera",
       "date": "26/02/2019",
       "duration": "H2",
       "location": "Bologna, Italy",
@@ -23,6 +25,7 @@
     {
       "title": "Tutorato per supporto: Informatica di Base",
       "type": "tutor",
+      "activity_type": "None",
       "date": "01/04/2019-31/10/2019",
       "duration": "H40",
       "location": "Bologna, Italy",
@@ -33,6 +36,7 @@
     {
       "title": "Libraries and their catalogs: from scarcity to over-abundance",
       "type": "seminary",
+      "activity_type": "Didattica curriculare; Didattica libera",
       "date": "10/05/2019",
       "duration": "H2",
       "location": "Bologna, Italy",
@@ -43,6 +47,7 @@
     {
       "title": "Things, Strings and Pitfalls: Thinking Linking",
       "type": "seminary",
+      "activity_type": "Didattica curriculare; Didattica libera",
       "date": "21/05/2019",
       "duration": "H2",
       "location": "Bologna, Italy",
@@ -53,6 +58,7 @@
     {
       "title": "Closing keynote for DHARC presentation",
       "type": "seminary",
+      "activity_type": "Didattica curriculare; Didattica libera",
       "date": "23/05/2019",
       "duration": "H2",
       "location": "Bologna, Italy",
@@ -63,6 +69,7 @@
     {
       "title": "I Maestri",
       "type": "seminary",
+      "activity_type": "Didattica comune",
       "date": "16/05/2019",
       "duration": "H2",
       "location": "Bologna, Italy",
@@ -73,6 +80,7 @@
     {
       "title": "Open Science e Open Access nelle Scienze",
       "type": "seminary",
+      "activity_type": "Didattica curriculare; Didattica libera",
       "date": "20/06/2019",
       "duration": "H4",
       "location": "Bologna, Italy",
@@ -83,6 +91,7 @@
     {
       "title": "ISWS 2019 - International Semantic Web Research Summer School",
       "type": "summer_school",
+      "activity_type": "Didattica curriculare; Didattica libera",
       "date": "30/06/2019-06/07/2019",
       "duration": "H48",
       "location": "Bertinoro, Italy",
