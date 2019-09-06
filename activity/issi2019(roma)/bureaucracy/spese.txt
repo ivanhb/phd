@@ -1,0 +1,10 @@
+outlay,value,date,info
+metro,1.5(euro),01/09/2019,
+food,21.2(euro),05/09/2019,autogrill
+food,45(euro),04/09/2019,trattoria
+food,5.4(euro),03/09/2019,mcdonalds
+bus,2(euro),05/09/2019,tper da stazione di bologna a casa
+bevuta,16.5(euro),02/09/2019,birra da pub
+cibo,74(euro),01/09/2019,trattoria 
+cibo,23.50(euro),01/09/2019,fastfood
+cibo,35(euro),03/09/2019,ristorante
