@@ -1,0 +1,17 @@
+https://api.crossref.org/journals/2532-8816/works?rows=500&offset=0
+https://api.crossref.org/journals/2297-2668/works?rows=500&offset=0
+  -> Found: 83#
+https://api.crossref.org/journals/2297-2668/works?rows=500&offset=500
+  -> Found: 0#
+https://api.crossref.org/journals/2055-768X/works?rows=500&offset=0
+  -> Found: 467#
+https://api.crossref.org/journals/2055-768X/works?rows=500&offset=500
+  -> Found: 0#
+https://api.crossref.org/journals/2055-7671/works?rows=500&offset=0
+  -> Found: 467#
+https://api.crossref.org/journals/2055-7671/works?rows=500&offset=500
+  -> Found: 0#
+Traceback (most recent call last):
+  File "dhjournals.py", line 42, in <module>
+    for a_doi in a_dh_j[issn_val]["dois"]:
+TypeError: string indices must be integers
