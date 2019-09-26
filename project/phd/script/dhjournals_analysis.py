@@ -131,4 +131,3 @@ if __name__ == "__main__":
                         print("Do the analysis with COCI dataset")
                         call_coci(id_val,dois_list)
                         store('"'+str(id_val)+'"', PROCESSED_INDEX)
-                        break
