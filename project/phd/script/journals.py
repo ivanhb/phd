@@ -18,6 +18,40 @@ class Journals(object):
         self.f_name = input
         self.processed = {}
 
+    def normalize_results(self):
+
+        s_file = self.output_dir + self.f_name
+        n_file = self.output_dir + "normalized_" + self.f_name
+        sum_file = self.output_dir + "summary_" + self.f_name
+
+        if path.exists(s_file):
+
+            #First read s_file
+            csv_reader = csv.reader(open(s_file), delimiter=',')
+            next(csv_reader)
+            __index = {}
+            for row in csv_reader:
+                if row[0] not in __index:
+                    __index[row[0]] = []
+                if row[1].startswith("10."):
+                    __index[row[0]].append(row[1])
+
+            #Now create the sum_file
+            self.store("id,dois\n",sum_file)
+
+            #Now create the n_file
+            self.store("id,doi\n",n_file)
+            for k_id in __index:
+                s_dois = ""
+                sum_dois = 0
+                for __a_doi in __index[k_id]:
+                    s_dois = s_dois + '"'+str(k_id)+'","'+str(__a_doi)+'"\n'
+                    sum_dois = sum_dois + 1
+                if s_dois != "":
+                    s_dois = s_dois[:-1]
+                    self.store(s_dois+"\n",n_file)
+                self.store('"'+str(k_id)+'","'+str(sum_dois)+'"\n', sum_file)
+
     def build_processed_index(self):
         if path.exists(self.output_dir + self.f_name):
             csv_reader = csv.reader(open(self.output_dir + self.f_name), delimiter=',')
@@ -69,12 +103,15 @@ class Journals(object):
             if len(json_data['message']["items"]) >= rows:
                 self.crossref_req_call(call, issn_value, rows, offset + rows, res_dois)
         else:
+            print("  -> No results")
             return False
 
         return res_dois
 
-    def store(self, str_content):
-        with open(self.output_dir + self.f_name, "a") as g:
+    def store(self, str_content, dest_file = None):
+        if dest_file == None:
+            dest_file = self.output_dir + self.f_name
+        with open(dest_file, "a") as g:
             g.write(str_content)
 
     def extend_journals_with_dois(self, SERVICE_CALL = "", LIMIT = -1, PRINT=True, TRY_AGAIN= False):
@@ -103,12 +140,12 @@ class Journals(object):
                     print(a_journal_obj["ID"]+" already processed!")
                     continue
                 print(a_journal_obj["ID"]+" Try again the call!")
-
-            #COMMENT this after testitng
-            if LIMIT_LOOP != 0:
-                LIMIT_LOOP = LIMIT_LOOP - 1
             else:
-                break
+                #COMMENT this after testitng
+                if LIMIT_LOOP != 0:
+                    LIMIT_LOOP = LIMIT_LOOP - 1
+                else:
+                    break
 
             #try both ISSNs
             s = ""
@@ -129,13 +166,19 @@ class Journals(object):
                                 if res_doi not in all_dois_index:
                                     all_dois_index.append(res_doi)
                         else:
-                            s = "-1"
+                            s = "error-or-not-found"
             if PRINT:
+
+                if len(all_dois_index) > 0:
+                    if s == "error-or-not-found":
+                        s=""
+
                 for a_doi in all_dois_index:
                     s = s + '"' + a_journal_obj["ID"] + '",' +'"'+a_doi+'"\n'
+
                 if s != "":
-                    if s == "-1":
-                        s = '"'+a_journal_obj["ID"]+'","Call-error or not existing"'
+                    if s == "error-or-not-found":
+                        s = '"'+a_journal_obj["ID"]+'","error_or_not_found"'
                     else:
                         s = s[:-1]
                 else:
