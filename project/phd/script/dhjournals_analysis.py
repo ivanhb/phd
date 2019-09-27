@@ -106,8 +106,10 @@ if __name__ == "__main__":
     index_processed = {}
     csv_reader_processed = csv.reader(open(PROCESSED_INDEX_FILE), delimiter=',')
     next(csv_reader_processed)
+    last_id = None
     for row in csv_reader_processed:
         index_processed[row[0]] = True
+        last_id = row[0]
 
 
     ## Processing Phase
@@ -137,7 +139,13 @@ if __name__ == "__main__":
                     index[row[0]] = []
                     all_keys = list(index.keys())
                     #take the previous elements set of a specific <id>, and process them
+                    id_val_to_process = None
                     if len(all_keys) > 1:
+                        id_val_to_process = all_keys[-2]
+                    elif all_keys[0] == last_id:
+                        id_val_to_process = last_id
+
+                    if last_id != None:
                         id_val = all_keys[-2]
                         dois_list = index[all_keys[-2]]
                         print("Do the analysis with COCI dataset")
