@@ -10,8 +10,11 @@ import re
 ERR_INDEX_FILE = ".script_temp/analysis_%s_err.csv"
 PROCESSED_INDEX_FILE = ".script_temp/analysis_%s_processed.csv"
 #The results of the experiments made
-RESULTS_FILE = "analysis_%s_res.csv"
+RESULTS_FILE = "analysis_res"
 EXTRA_RESULTS = ""
+
+def progress_bar(current_val, final_val):
+    print(str(round((current_val/final_val)*100)),end=" percent complete         \r")
 
 def store(str_content, dest_file, is_header = False):
     if is_header:
@@ -19,6 +22,11 @@ def store(str_content, dest_file, is_header = False):
             return "Header is in already"
     with open(dest_file, "a") as g:
         g.write(str_content+"\n")
+
+def store_json(data, dest_file):
+    with open(dest_file, 'w') as outfile:
+        json.dump(data, outfile)
+
 
 #Converts timespan values (in ISO_8601 Durations format) in a Total days number
 def convert_timespan(str_timespan):
@@ -36,6 +44,26 @@ def convert_timespan(str_timespan):
             totdays = totdays + (int(val_part[0]) * t_elem["val"])
 
     return totdays
+
+#Get a backup of all the DOI item in Crossref
+#the generated file will have the id value and a list of all its items
+def do_ex2(id,dois_list):
+    CROSSREF_API_DOI = "https://api.crossref.org/works/%s"
+    json_data = []
+
+    count = 1
+    for a_doi in dois_list:
+        response = requests.get(CROSSREF_API_DOI%a_doi)
+        if response.status_code == 200:
+            json_data.append(json.loads(response.content))
+
+        progress_bar(count, len(dois_list))
+        count += 1
+
+    store_json(json_data, RESULTS_FILE+"_"+str(id)+".json")
+    return json_data
+
+
 
 #takes an id and its related list of DOIs and calls COCI for each DOI in the list
 def do_ex1(id,dois_list):
@@ -94,7 +122,7 @@ if __name__ == "__main__":
     # 0) Define the FILES and PATHS
     ERR_INDEX_FILE = ERR_INDEX_FILE%args.ex_val
     PROCESSED_INDEX_FILE = PROCESSED_INDEX_FILE%args.ex_val
-    RESULTS_FILE = RESULTS_FILE%args.ex_val
+    RESULTS_FILE = RESULTS_FILE+"_ex"+str(args.ex_val)
     if exists(args.output_dir):
         RESULTS_FILE = args.output_dir+RESULTS_FILE
     ## -----
@@ -113,6 +141,7 @@ if __name__ == "__main__":
     ## Processing Phase
     ## ----------------------------
     index = {}
+    INIT_BOOL = True
     csv_reader = csv.reader(open(args.dh_dois_file), delimiter=',')
     next(csv_reader)
     for row in csv_reader:
@@ -123,12 +152,15 @@ if __name__ == "__main__":
             # Experiment 1
             ## -----
             if args.ex_val == "1":
-                #EX1 Definitions: make analysis on the DOIs
-                store("id,dois_in_coci_with_refs,avg_refs_x_doi,avg_refs_timespan", RESULTS_FILE, True)
-                EXTRA_RESULTS = 'dois_notin_coci.csv'
-                if exists(args.output_dir):
-                    EXTRA_RESULTS = args.output_dir+EXTRA_RESULTS
-                store("id,doi", EXTRA_RESULTS, True)
+                if INIT_BOOL:
+                    RESULTS_FILE = RESULTS_FILE+".csv"
+                    #EX1 Definitions: make analysis on the DOIs
+                    store("id,dois_in_coci_with_refs,avg_refs_x_doi,avg_refs_timespan", RESULTS_FILE, INIT_BOOL)
+                    EXTRA_RESULTS = 'dois_notin_coci.csv'
+                    if exists(args.output_dir):
+                        EXTRA_RESULTS = args.output_dir+EXTRA_RESULTS
+                    store("id,doi", EXTRA_RESULTS, INIT_BOOL)
+                    INIT_BOOL = False
 
                 if row[0] in index:
                     index[row[0]].append(row[1])
@@ -147,10 +179,26 @@ if __name__ == "__main__":
             # Experiment 2
             ## -----
             if args.ex_val == "2":
-                #EX2 Definitions: make analysis on the DOIs
-                break
+                if row[0] in index:
+                    index[row[0]].append(row[1])
+                else:
+                    #a new id to elaborate
+                    index[row[0]] = []
+                    all_keys = list(index.keys())
+                    if len(all_keys) > 1:
+                        id_val = all_keys[-2]
+                        dois_list = index[all_keys[-2]]
+                        print("Download all CROSSREF data for journal id="+str(id_val))
+                        do_ex2(id_val,dois_list)
+                        store('"'+str(id_val)+'"', PROCESSED_INDEX_FILE)
+
 
     #Last id to process
+    ## -----
     if args.ex_val == "1":
         id_val = list(index.keys())[-1]
         do_ex1(id_val,index[id_val])
+
+    if args.ex_val == "2":
+        id_val = list(index.keys())[-1]
+        do_ex2(id_val,index[id_val])
