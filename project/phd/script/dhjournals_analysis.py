@@ -5,6 +5,8 @@ import csv
 import requests
 import json
 import re
+import time
+
 
 #Index files used during the elaboration
 ERR_INDEX_FILE = ".script_temp/analysis_%s_err.csv"
@@ -13,8 +15,8 @@ PROCESSED_INDEX_FILE = ".script_temp/analysis_%s_processed.csv"
 RESULTS_FILE = "analysis_res"
 EXTRA_RESULTS = ""
 
-def progress_bar(current_val, final_val):
-    print(str(round((current_val/final_val)*100)),end=" percent complete         \r")
+def progress_bar(current_val, final_val, prefix= ""):
+    print(str(prefix)+str(round((current_val/final_val)*100)),end=" percent complete         \r")
 
 def store(str_content, dest_file, is_header = False):
     if is_header:
@@ -44,6 +46,88 @@ def convert_timespan(str_timespan):
             totdays = totdays + (int(val_part[0]) * t_elem["val"])
 
     return totdays
+
+#Get all the crossref data for all the DOIs in the journal dois dataset
+def do_ex3(id, a_j_path):
+
+    CROSSREF_API_DOI = "https://api.crossref.org/works/%s"
+
+    json_file = open(a_j_path)
+    list_data = json.load(json_file)
+
+    tot_count = len(list_data)
+    ref_list = []
+    doi_refs_list = []
+    nondoi_refs_list = []
+    nondoi_json_data = []
+    doi_json_data = []
+    prog_count = 1
+    for a_obj in list_data:
+        if "reference" in a_obj["message"]:
+            obj_refs = a_obj["message"]["reference"]
+            ref_list.append(len(obj_refs))
+            ref_with_doi = 0
+            ref_prog_count = 0
+            for a_ref in obj_refs:
+                progress_bar(prog_count, len(list_data), " Processing reference num: "+str(ref_prog_count)+"; Of element number: "+str(prog_count)+"; ")
+                ref_prog_count += 1
+
+                if "DOI" in a_ref:
+                    ref_with_doi += 1
+                    for try_i in range(0,5):
+                        response = requests.get(CROSSREF_API_DOI%a_ref["DOI"])
+                        if response.status_code == 200:
+                            doi_json_data.append(json.loads(response.content))
+                            break
+                        else:
+                            time.sleep(5*try_i)
+
+                        if try_i == 4:
+                            store('"'+str(id)+'","'+str(a_ref["DOI"])+'","internal_server_error"', ERR_INDEX_FILE)
+
+                else:
+                    nondoi_json_data.append(a_ref)
+
+            doi_refs_list.append(ref_with_doi)
+            nondoi_refs_list.append(len(obj_refs) - ref_with_doi)
+
+        prog_count += 1
+
+    avg_ref = -1
+    count_with_ref = len(ref_list)
+    if count_with_ref > 0:
+        avg_ref = sum(ref_list)/count_with_ref
+
+    avg_doi_refs = -1
+    count = len(doi_refs_list)
+    if count > 0:
+        avg_doi_refs = sum(doi_refs_list)/count
+
+    avg_nondoi_refs = -1
+    count = len(nondoi_refs_list)
+    if count > 0:
+        avg_nondoi_refs = sum(nondoi_refs_list)/count
+
+    store_json(nondoi_json_data, RESULTS_FILE+"_"+str(id)+"_nondoirefs.json")
+    store_json(doi_json_data, RESULTS_FILE+"_"+str(id)+"_doirefs.json")
+    store("id,dois_in_cr,dois_in_cr_with_refs,avg_refs_x_elem,avg_doirefs_x_elem,avg_non_doirefs_x_elem", RESULTS_FILE+".csv", True)
+    store('"'
+        +str(id)+'","'
+        +str(len(list_data))+'","'
+        +str(count_with_ref)+'","'
+        +str(round(avg_ref,2))+'","'
+        +str(round(avg_doi_refs,2))+'","'
+        +str(round(avg_nondoi_refs,2))+
+        '"', RESULTS_FILE+".csv")
+
+
+    print(str(i)+": #with refs: "+str(count_with_ref)+
+          ";\n   out of: "+ str(len(list_data))+
+          ";\n   average ref: "+str(round(avg_ref,2))+
+          ";\n   average DOI refs: "+str(round(avg_doi_refs,2))+
+          ";\n   average non-DOI refs: "+str(round(avg_nondoi_refs,2))+
+          "\n"
+    )
 
 #Get a backup of all the DOI item in Crossref
 #the generated file will have the id value and a list of all its items
@@ -113,7 +197,7 @@ def do_ex1(id,dois_list):
 if __name__ == "__main__":
     arg_parser = ArgumentParser("dhjournals_analysis.py", description="Do some analysis on the DH journals data")
     arg_parser.add_argument("-ex", "--experiment", dest="ex_val", required=True, help="The experiment number")
-    arg_parser.add_argument("-in", "--input", dest="dh_dois_file", required=True, help="The csv file (full path) of the DOIs")
+    arg_parser.add_argument("-in", "--input", dest="arg_input", required=True, help="The csv file (full path) of the DOIs")
     arg_parser.add_argument("-out", "--output", dest="output_dir", required=False, help="The output directory where the results will be stored")
     args = arg_parser.parse_args()
 
@@ -142,55 +226,68 @@ if __name__ == "__main__":
     ## ----------------------------
     index = {}
     INIT_BOOL = True
-    csv_reader = csv.reader(open(args.dh_dois_file), delimiter=',')
-    next(csv_reader)
-    for row in csv_reader:
-        if row[0] not in index_processed:
-            ## -----
-            # Check the experiment value
 
-            # Experiment 1
-            ## -----
-            if args.ex_val == "1":
-                if INIT_BOOL:
-                    RESULTS_FILE = RESULTS_FILE+".csv"
-                    #EX1 Definitions: make analysis on the DOIs
-                    store("id,dois_in_coci_with_refs,avg_refs_x_doi,avg_refs_timespan", RESULTS_FILE, INIT_BOOL)
-                    EXTRA_RESULTS = 'dois_notin_coci.csv'
-                    if exists(args.output_dir):
-                        EXTRA_RESULTS = args.output_dir+EXTRA_RESULTS
-                    store("id,doi", EXTRA_RESULTS, INIT_BOOL)
-                    INIT_BOOL = False
+    if ((args.ex_val == "1") or (args.ex_val == "2")) :
+        data_to_process = csv.reader(open(args.arg_input), delimiter=',')
+        next(data_to_process)
+        for row in data_to_process:
+            if row[0] not in index_processed:
+                ## -----
+                # Check the experiment value
 
-                if row[0] in index:
-                    index[row[0]].append(row[1])
-                else:
-                    #a new id to elaborate
-                    index[row[0]] = []
-                    all_keys = list(index.keys())
-                    #take the previous elements set of a specific <id>, and process them
-                    if len(all_keys) > 1:
-                        id_val = all_keys[-2]
-                        dois_list = index[all_keys[-2]]
-                        print("Do the analysis with COCI dataset")
-                        do_ex1(id_val,dois_list)
-                        store('"'+str(id_val)+'"', PROCESSED_INDEX_FILE)
+                # Experiment 1
+                ## -----
+                if args.ex_val == "1":
+                    if INIT_BOOL:
+                        RESULTS_FILE = RESULTS_FILE+".csv"
+                        #EX1 Definitions: make analysis on the DOIs
+                        store("id,dois_in_coci_with_refs,avg_refs_x_doi,avg_refs_timespan", RESULTS_FILE, INIT_BOOL)
+                        EXTRA_RESULTS = 'dois_notin_coci.csv'
+                        if exists(args.output_dir):
+                            EXTRA_RESULTS = args.output_dir+EXTRA_RESULTS
+                        store("id,doi", EXTRA_RESULTS, INIT_BOOL)
+                        INIT_BOOL = False
 
-            # Experiment 2
-            ## -----
-            if args.ex_val == "2":
-                if row[0] in index:
-                    index[row[0]].append(row[1])
-                else:
-                    #a new id to elaborate
-                    index[row[0]] = []
-                    all_keys = list(index.keys())
-                    if len(all_keys) > 1:
-                        id_val = all_keys[-2]
-                        dois_list = index[all_keys[-2]]
-                        print("Download all CROSSREF data for journal id="+str(id_val))
-                        do_ex2(id_val,dois_list)
-                        store('"'+str(id_val)+'"', PROCESSED_INDEX_FILE)
+                    if row[0] in index:
+                        index[row[0]].append(row[1])
+                    else:
+                        #a new id to elaborate
+                        index[row[0]] = []
+                        all_keys = list(index.keys())
+                        #take the previous elements set of a specific <id>, and process them
+                        if len(all_keys) > 1:
+                            id_val = all_keys[-2]
+                            dois_list = index[all_keys[-2]]
+                            print("Do the analysis with COCI dataset")
+                            do_ex1(id_val,dois_list)
+                            store('"'+str(id_val)+'"', PROCESSED_INDEX_FILE)
+
+                # Experiment 2
+                ## -----
+                if args.ex_val == "2":
+                    if row[0] in index:
+                        index[row[0]].append(row[1])
+                    else:
+                        #a new id to elaborate
+                        index[row[0]] = []
+                        all_keys = list(index.keys())
+                        if len(all_keys) > 1:
+                            id_val = all_keys[-2]
+                            dois_list = index[all_keys[-2]]
+                            print("Download all CROSSREF data for journal id="+str(id_val))
+                            do_ex2(id_val,dois_list)
+                            store('"'+str(id_val)+'"', PROCESSED_INDEX_FILE)
+
+    # Experiment 3
+    ## -----
+    elif args.ex_val == "3":
+        cr_journal_data_path = args.arg_input+"analysis_res_ex2_%s.json"
+        for i in range(0,100):
+            if i not in index_processed:
+                a_j_path = cr_journal_data_path%i
+                if exists(a_j_path):
+                    do_ex3(i, a_j_path)
+                    store('"'+str(i)+'"', PROCESSED_INDEX_FILE)
 
 
     #Last id to process
