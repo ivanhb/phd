@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSSample</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+    $(function() {
+        var params = {
+            // Request parameters
+            "expr": "Composite(And(AA.AuN='mike smith',AA.AfN='harvard university'))",
+            "model": "latest",
+            "count": "10",
+            "offset": "0",
+            //"orderby": "{string}",
+            "attributes": "Id",
+        };
+
+        $.ajax({
+            url: "https://msr-apis.azure-api.net/academic/v1.0/evaluate?" + $.param(params),
+            beforeSend: function(xhrObj){
+                // Request headers
+                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","a518ae1f71bd4811a7e9d25e621736e2");
+            },
+            type: "GET",
+            // Request body
+            //data: "{body}",
+        })
+        .done(function(data) {
+            alert("success");
+        })
+        .fail(function() {
+            alert("error");
+        });
+    });
+</script>
+</body>
+</html>

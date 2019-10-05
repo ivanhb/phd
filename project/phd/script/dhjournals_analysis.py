@@ -47,6 +47,48 @@ def convert_timespan(str_timespan):
 
     return totdays
 
+def intersection(lst1, lst2):
+    lst3 = [value for value in lst1 if value in lst2]
+    return lst3
+
+#Check the references of all the DH-Journals DOIs and
+# 1) Check if the DOI references are associated to DH-Journals too
+# dhj_dois_refs: the list of DOIs references of a specific DH-Journal
+def do_ex4(id, issn_vals, dhj_dois_refs_path):
+    #the list of DOIs references for DH-Journal with ID equal to <id>
+    dhj_dois_refs = json.load(open(dhj_dois_refs_path))
+
+    counts = {"exclusively":0, "significantly":0, "marginally":0, "other":0}
+    for a_doi_obj in dhj_dois_refs:
+        if "message" in a_doi_obj:
+            if "ISSN" in a_doi_obj["message"]:
+                ref_issns = a_doi_obj["message"]["ISSN"]
+                if(len(intersection(ref_issns, issn_vals["exclusively"])) > 0):
+                    counts["exclusively"] += 1
+                elif(len(intersection(ref_issns, issn_vals["significantly"])) > 0):
+                    counts["significantly"] += 1
+                elif(len(intersection(ref_issns, issn_vals["marginally"])) > 0):
+                    counts["marginally"] += 1
+                else:
+                    counts["other"] += 1
+
+    #print(str(id)+"\n refs numbers are:"+
+    #        "\nexclusively: "+str(counts["exclusively"])+
+    #        "\nsignificantly: "+str(counts["significantly"])+
+    #        "\nmarginally: "+str(counts["marginally"])+
+    #        "\nother: "+str(counts["other"])+
+    #        "\n"
+    #)
+
+    store("id,exclusively_refs,significantly_refs,marginally_refs,other", RESULTS_FILE+".csv", True)
+    store('"'
+        +str(id)+'","'
+        +str(counts["exclusively"])+'","'
+        +str(counts["significantly"])+'","'
+        +str(counts["marginally"])+'","'
+        +str(counts["other"])+
+        '"', RESULTS_FILE+".csv")
+
 #Get all the crossref data for all the DOIs in the journal dois dataset
 def do_ex3(id, a_j_path):
 
@@ -69,22 +111,21 @@ def do_ex3(id, a_j_path):
             ref_with_doi = 0
             ref_prog_count = 0
             for a_ref in obj_refs:
-                progress_bar(prog_count, len(list_data), " Processing reference num: "+str(ref_prog_count)+"; Of element number: "+str(prog_count)+"; ")
+                #progress_bar(prog_count, len(list_data), " Processing reference num: "+str(ref_prog_count)+"; Of element number: "+str(prog_count)+"; ")
                 ref_prog_count += 1
 
                 if "DOI" in a_ref:
                     ref_with_doi += 1
-                    for try_i in range(0,5):
-                        response = requests.get(CROSSREF_API_DOI%a_ref["DOI"])
-                        if response.status_code == 200:
-                            doi_json_data.append(json.loads(response.content))
-                            break
-                        else:
-                            time.sleep(5*try_i)
-
-                        if try_i == 4:
-                            store('"'+str(id)+'","'+str(a_ref["DOI"])+'","internal_server_error"', ERR_INDEX_FILE)
-
+                    #for try_i in range(0,5):
+                    #    response = requests.get(CROSSREF_API_DOI%a_ref["DOI"])
+                    #    if response.status_code == 200:
+                    #        doi_json_data.append(json.loads(response.content))
+                    #        break
+                    #    else:
+                    #        time.sleep(5*try_i)
+                    #
+                    #    if try_i == 4:
+                    #        store('"'+str(id)+'","'+str(a_ref["DOI"])+'","internal_server_error"', ERR_INDEX_FILE)
                 else:
                     nondoi_json_data.append(a_ref)
 
@@ -287,6 +328,38 @@ if __name__ == "__main__":
                 a_j_path = cr_journal_data_path%i
                 if exists(a_j_path):
                     do_ex3(i, a_j_path)
+                    store('"'+str(i)+'"', PROCESSED_INDEX_FILE)
+
+    # Experiment 4
+    ## -----
+    elif args.ex_val == "4":
+        parts_inputs = args.arg_input.split("//")
+        dhj_file = parts_inputs[0]
+        dhj_refs_path = parts_inputs[1]
+
+        dhj_file_content = csv.reader(open(dhj_file), delimiter=',')
+        next(dhj_file_content)
+
+        dhj_file_issn = {"exclusively": [], "significantly": [], "marginally": []}
+        for row in dhj_file_content:
+            if row[6] == "Exclusively":
+                dhj_file_issn["exclusively"] = list(set().union(dhj_file_issn["exclusively"], row[1].split(";"), row[2].split(";")))
+            elif row[6] == "Significantly":
+                dhj_file_issn["significantly"] = list(set().union(dhj_file_issn["significantly"], row[1].split(";"), row[2].split(";")))
+            elif row[6] == "Marginally":
+                dhj_file_issn["marginally"] = list(set().union(dhj_file_issn["marginally"], row[1].split(";"), row[2].split(";")))
+
+        #print(dhj_file_issn)
+
+        for i in range(0,100):
+            if i not in index_processed:
+                _i_ref_list_path = dhj_refs_path+"analysis_res_ex3_%s_doirefs.json"%str(i)
+                if exists(_i_ref_list_path):
+                    do_ex4(
+                        i,
+                        dhj_file_issn,
+                        _i_ref_list_path
+                    )
                     store('"'+str(i)+'"', PROCESSED_INDEX_FILE)
 
 
