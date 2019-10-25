@@ -1,6 +1,17 @@
 {
   "items": [
     {
+      "title": "The Digital Humanist. The past, the present and… the future?",
+      "type": "seminary",
+      "activity_type": "Didattica curriculare",
+      "date": "25/10/2019",
+      "duration": "H2",
+      "location": "Bologna, Italy",
+      "description": "",
+      "host": "Domenico Fiormonte",
+      "source": "https://centri.unibo.it/dharc/en/agenda/domenico-fiormonte-the-digital-humanist-the-past-the-present-and-the-future"
+    },
+    {
       "title": "Introductory activities DHDK 2019-20: Web page creation with a framework",
       "type": "tutor",
       "activity_type": "none",
