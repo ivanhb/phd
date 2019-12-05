@@ -1,6 +1,72 @@
 {
   "items": [
     {
+      "title": "Assistente al corso 'Laboratorio di Computational thinking' per il corso DHDK-2019/2020",
+      "type": "tutor",
+      "activity_type": "none",
+      "date": "20/11/2019",
+      "duration": "H2",
+      "location": "Bologna, Italy",
+      "description": "",
+      "host": "Marilena Daquindo",
+      "source": "https://www.unibo.it/en/teaching/course-unit-catalogue/course-unit/2019/424624"
+    },
+    {
+      "title": "Assistente al corso 'Laboratorio di Computational thinking' per il corso DHDK-2019/2020",
+      "type": "tutor",
+      "activity_type": "none",
+      "date": "13/11/2019",
+      "duration": "H2",
+      "location": "Bologna, Italy",
+      "description": "",
+      "host": "Marilena Daquindo",
+      "source": "https://www.unibo.it/en/teaching/course-unit-catalogue/course-unit/2019/424624"
+    },
+    {
+      "title": "Assistente al corso 'Laboratorio di Computational thinking' per il corso DHDK-2019/2020",
+      "type": "tutor",
+      "activity_type": "none",
+      "date": "11/11/2019",
+      "duration": "H2",
+      "location": "Bologna, Italy",
+      "description": "",
+      "host": "Marilena Daquindo",
+      "source": "https://www.unibo.it/en/teaching/course-unit-catalogue/course-unit/2019/424624"
+    },
+    {
+      "title": "Assistente al corso 'Laboratorio di Computational thinking' per il corso DHDK-2019/2020",
+      "type": "tutor",
+      "activity_type": "none",
+      "date": "30/10/2019",
+      "duration": "H2",
+      "location": "Bologna, Italy",
+      "description": "",
+      "host": "Marilena Daquindo",
+      "source": "https://www.unibo.it/en/teaching/course-unit-catalogue/course-unit/2019/424624"
+    },
+    {
+      "title": "Assistente al corso 'Laboratorio di Computational thinking' per il corso DHDK-2019/2020",
+      "type": "tutor",
+      "activity_type": "none",
+      "date": "23/10/2019",
+      "duration": "H2",
+      "location": "Bologna, Italy",
+      "description": "",
+      "host": "Marilena Daquindo",
+      "source": "https://www.unibo.it/en/teaching/course-unit-catalogue/course-unit/2019/424624"
+    },
+    {
+      "title": "Michelangelo Zaccarello, The other side(s) of digital textuality",
+      "type": "seminary",
+      "activity_type": "Didattica curriculare",
+      "date": "19/11/2019",
+      "duration": "H2",
+      "location": "Bologna, Italy",
+      "description": "L'avvento del mezzo digitale ha profondamente trasformato tanto le dinamiche di produzione e diffusione del testo letterario, quanto la relativa prassi editoriale. Nonostante ciò, le questioni di fondo che pone la filologia conservano tutta la loro importanza.",
+      "host": "Michelangelo Zaccarello",
+      "source": "https://centri.unibo.it/dharc/en/agenda/michelangelo-zaccarello-the-other-side-s-of-digital-textuality"
+    },
+    {
       "title": "Marie Rebecchi, The Intelligence of a Time Machine from Jean Epstein to Friedrich Kittler",
       "type": "seminary",
       "activity_type": "Didattica curriculare",
