@@ -3,3 +3,4 @@ __pycache__
 .ipynb_*
 data/
 .tmp.drivedownload
+citing_docs/
