@@ -1,0 +1,14 @@
+Dear Editors,
+
+Please find enclosed our submission to Scientometrics entitled “A qualitative and quantitative citation analysis toward retracted articles: a case of study”. In this article, we show the results of a quantitative and qualitative citation analysis on a popular and highly cited retracted paper: “Ileal-lymphoid-nodular hyperplasia, non-specific colitis, and pervasive developmental disorder in children” by Wakefield et al., published in 1998.
+
+The main purpose of our study is to investigate the behavior of the publications citing retracted articles and the characteristics of the citations the retracted articles accumulated over time. Our analysis is based on a methodology which illustrates how we gathered the data, extracted the topics of the citing articles, and visualised the results. Such results concerned the analysis of the entities citing Wakefield et al. and their related in-text citations.
+
+We have observed a constantly increasing number of articles citing Wakefield at al.’s article in the last 20 years, accompanied by a constant increment in the percentage of those acknowledging its retraction. Citing articles have started discussing/dealing with the retraction of Wakefield et al. even before its full retraction, happened in 2010. Social sciences studies were among those that have mostly discussed the retraction phenomena. In addition, when observing the in-text citations, we noticed how a large part of the citations received by Wakefield et al.’s article have been focused on general discussions without recalling strictly medical details, especially after the full retraction. Medical studies did not hesitate in acknowledging the retraction and even gave strong negative statements on it in some occasions, which is a crucial aspect in order to guarantee a healthier future scientific production.
+
+The results of our analysis (data and visualisations) are available in a Zenodo repository (https://doi.org/10.5281/zenodo.4024337). We also provide a dedicated webpage (https://ivanhb.github.io/ret-analysis-wakefield-results/) to enable readers to use the dynamic visualizations of our results. In addition, we make available additional information and details about the data gathering process of our methodology at https://dx.doi.org/10.17504/protocols.io.bdc4i2yw.
+
+Best regards,
+
+Ivan Heibi
+Silvio Peroni 
